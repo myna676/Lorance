@@ -1,0 +1,101 @@
+
+const type = {
+    LWHATCH:0,
+    GWHATCH:1,
+    WALLET:2,
+    PEN:3
+}
+class product {
+    constructor(name, price, images, type, discrption) {
+        this.name = name;
+        this.price = price;
+        this.images = images;
+        this.type = type;
+        this.discrption = discrption
+    }
+}
+function getDisplay(obj) {
+    let contener = document.createElement('div');
+    contener.setAttribute('details', JSON.stringify(obj))
+    contener.setAttribute('onclick', `localStorage.product = this.getAttribute("details"); window.location.pathname = 'product.html'`)
+    contener.classList.add('productDisplayReal')
+    let img = document.createElement('img');
+    
+    let imgs = obj.images.filter(
+        item => item.substring(item.lastIndexOf("/")).length == 8
+    )
+    if (imgs.length == 0) {
+        imgs = obj.images
+    }
+    
+    if(obj.type != type.PEN){
+        img.src = `imgs/${imgs[Math.floor(Math.random( ) * imgs.length)]}`
+    }
+    else{
+        img.src = `imgs/${imgs[0]}`
+    }
+    let name = document.createElement('h2')
+    name.innerHTML = obj.name
+    let price = document.createElement('p')
+    price.innerText = `${Math.ceil((obj.price* (5/3)) / 3.65)} $`
+    contener.appendChild(img);
+    contener.appendChild(name);
+    contener.appendChild(price);
+    
+
+
+    return contener.outerHTML
+}
+
+
+let products = [new product('LR LORANCE 252L', 510, ['/LR/LR.252L/003.png','/LR/LR.252L/004.png','/LR/LR.252L/006.png','/LR/LR.252L/02.png','/LR/LR.252L/04.png','/LR/LR.252L/05.png','/LR/LR.252L/06.png','/LR/LR.252L/07.png','/LR/LR.252L/08.png','/LR/LR.252L/12.png','/LR/LR.252L/13.png'], type.LWHATCH, 'STAINLESS STEEL METAL BAND WITH DOUBLE BUTTERFLY BUCKLE WITH PUSHERS<br>ALLOY CASE <br>SWISS MOVEMENT<br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>CASE SIZE:28.0X38.5MM <br>OPENING SIZE:17.5X17.5MM <br>STRAP:16.0X13.0MM <br>CROWN SIZE:4.0MM<br> MOVT.: RONDA 763 <br>A FULL ONE-YEAR WARRANTY'),
+new product('LR LORANCE 252L-ZIRCON', 630, ['/LR/LR.252L/CZ/001.png','/LR/LR.252L/CZ/002.png','/LR/LR.252L/CZ/005.png','/LR/LR.252L/CZ/007.png','/LR/LR.252L/CZ/01.png','/LR/LR.252L/CZ/03.png','/LR/LR.252L/CZ/09.png','/LR/LR.252L/CZ/10.png','/LR/LR.252L/CZ/11.png'], type.LWHATCH, 'STAINLESS STEEL METAL BAND WITH DOUBLE BUTTERFLY BUCKLE WITH PUSHERS<br>ALLOY CASE WITH SETTING WHITE CZ STONES <br>SWISS MOVEMENT<br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>CASE SIZE:28.0X38.5MM <br>OPENING SIZE:17.5X17.5MM <br>STRAP:16.0X13.0MM <br>CROWN SIZE:4.0MM<br> MOVT.: RONDA 763 <br>A FULL ONE-YEAR WARRANT'),
+new product('LR LORANCE 253L', 510, ['/LR/LR.253L/002.png','/LR/LR.253L/003.png','/LR/LR.253L/004.png','/LR/LR.253L/02.png','/LR/LR.253L/04.png','/LR/LR.253L/05.png','/LR/LR.253L/06.png','/LR/LR.253L/07.png','/LR/LR.253L/08.png','/LR/LR.253L/12.png','/LR/LR.253L/13.png'], type.LWHATCH, 'STAINLESS STEEL METAL BAND WITH DOUBLE BUTTERFLY BUCKLE WITH PUSHERS<br>ALLOY CASE <br>SWISS MOVEMENT<br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>CASE SIZE:28.0X34.5MM<br> OPENING SIZE: 19.5X19.5MM <br>STRAP:16.0X13.0MM<br> CROWN SIZE:3.5MM <br>MOVT.: RONDA 763 <br>A FULL ONE-YEAR WARRANTY'),
+new product('LR LORANCE 253L-ZIRCON', 585, ['/LR/LR.253L/CZ/001.png','/LR/LR.253L/CZ/01.png','/LR/LR.253L/CZ/03.png','/LR/LR.253L/CZ/09.png','/LR/LR.253L/CZ/10.png','/LR/LR.253L/CZ/11.png'], type.LWHATCH, '~~<br>STAINLESS STEEL METAL BAND WITH DOUBLE BUTTERFLY BUCKLE WITH PUSHERS<br>ALLOY CASE <br>SWISS MOVEMENT<br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>CASE SIZE:28.0X34.5MM<br> OPENING SIZE: 19.5X19.5MM <br>STRAP:16.0X13.0MM<br> CROWN SIZE:3.5MM <br>MOVT.: RONDA 763 <br>A FULL ONE-YEAR WARRANTY'),
+new product('LR LORANCE 254L', 495, ['/LR/LR.254L/002.png','/LR/LR.254L/003.png','/LR/LR.254L/004.png','/LR/LR.254L/01.png','/LR/LR.254L/02.png','/LR/LR.254L/03.png','/LR/LR.254L/04.png','/LR/LR.254L/05.png','/LR/LR.254L/06.png','/LR/LR.254L/07.png','/LR/LR.254L/08.png'], type.LWHATCH, 'STAINLESS STEEL METAL BAND WITH DOUBLE BUTTERFLY BUCKLE WITH PUSHERS<br>ALLOY CASE <br>SWISS MOVEMENT<br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>A FULL YEARONE- WARRANTY<br>CASE SIZE:25.0X31.0MM <br>OPENING SIZE:17.0X18.5MM<br>STRAP:18.0X16.0MM<br>CROWN SIZE:4.0MM<br> MOVT.: RONDA 763'),
+new product('LR LORANCE 254L-ZIRCON', 615, ['/LR/LR.254L/CZ/001.png','/LR/LR.254L/CZ/09.png','/LR/LR.254L/CZ/10.png','/LR/LR.254L/CZ/11.png','/LR/LR.254L/CZ/12.png','/LR/LR.254L/CZ/13.png'], type.LWHATCH, 'STAINLESS STEEL METAL BAND WITH DOUBLE BUTTERFLY BUCKLE WITH PUSHERS<br>ALLOY CASE WITH SETTING WHITE CZ STONES<br>SWISS MOVEMENT<br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>A FULL YEARONE- WARRANTY<br>CASE SIZE:25.0X31.0MM <br>OPENING SIZE:17.0X18.5MM<br>STRAP:18.0X16.0MM<br>CROWN SIZE:4.0MM<br> MOVT.: RONDA 763'),
+new product('LR LORANCE 257L', 495, ['/LR/LR.257L/002.png','/LR/LR.257L/003.png','/LR/LR.257L/004.png','/LR/LR.257L/005.png','/LR/LR.257L/006.png','/LR/LR.257L/01.png','/LR/LR.257L/02.png','/LR/LR.257L/03.png','/LR/LR.257L/04.png','/LR/LR.257L/05.png','/LR/LR.257L/06.png','/LR/LR.257L/07.png'], type.LWHATCH, 'STAINLESS STEEL METAL BAND WITH DOUBLE BUTTERFLY BUCKLE WITH PUSHERS<br>ALLOY CASE <br>SWISS MOVEMENT<br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>A FULL YEARONE- WARRANTY<br>CASE SIZE:25.0X31.0MM <br>OPENING SIZE:17.0X18.5MM<br>STRAP:18.0X16.0MM<br>CROWN SIZE:4.0MM<br> MOVT.: RONDA 763'),
+new product('LR LORANCE 257L-ZIRCON', 615, ['/LR/LR.257L/CZ/0001.png','/LR/LR.257L/CZ/001.png','/LR/LR.257L/CZ/09.png','/LR/LR.257L/CZ/10.png','/LR/LR.257L/CZ/11.png','/LR/LR.257L/CZ/12.png'], type.LWHATCH, 'STAINLESS STEEL METAL BAND WITH DOUBLE BUTTERFLY BUCKLE WITH PUSHERS<br>ALLOY CASE WITH SETTING WHITE CZ STONES<br>SWISS MOVEMENT<br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>A FULL YEARONE- WARRANTY<br>CASE SIZE:25.0X31.0MM <br>OPENING SIZE:17.0X18.5MM<br>STRAP:18.0X16.0MM<br>CROWN SIZE:4.0MM<br> MOVT.: RONDA 763'),
+new product('LR LORANCE 146L', 465, ['/LR/LR.146L/001.png','/LR/LR.146L/002.png','/LR/LR.146L/003.png','/LR/LR.146L/004.png','/LR/LR.146L/01.png','/LR/LR.146L/02.png','/LR/LR.146L/03.png','/LR/LR.146L/04.png','/LR/LR.146L/05.png','/LR/LR.146L/06.png','/LR/LR.146L/07.png','/LR/LR.146L/08.png','/LR/LR.146L/09.png','/LR/LR.146L/10.png','/LR/LR.146L/11.png','/LR/LR.146L/12.png','/LR/LR.146L/13.png','/LR/LR.146L/14.png','/LR/LR.146L/15.png','/LR/LR.146L/16.png'], type.LWHATCH, 'STAINLESS STEEL METAL BAND WITH DOUBLE BUTTERFLY BUCKLE WITH PUSHERS<br>ALLOY CASE <br>SWISS MOVEMENT<br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>CASE DIMENSION(3-9) 30.0MM<br>CASE DIMENSION (6-12) 33.0MM<br>DIAL OPENING SIZE 20.0MM<br>CASE MATERIAL ALLOY<br>HANDS SIZE 8.0*5.0MM<br>CROWN SIZE 4.5MM<br>BAND SIZE 14.0*14.0MM'),
+new product('LR LORANCE 146L-ZIRCON', 585, ['/LR/LR.146L/CZ/001.png','/LR/LR.146L/CZ/002.png','/LR/LR.146L/CZ/003.png','/LR/LR.146L/CZ/004.png','/LR/LR.146L/CZ/005.png','/LR/LR.146L/CZ/006.png','/LR/LR.146L/CZ/01.png','/LR/LR.146L/CZ/02.png','/LR/LR.146L/CZ/03.png','/LR/LR.146L/CZ/04.png','/LR/LR.146L/CZ/05.png','/LR/LR.146L/CZ/06.png','/LR/LR.146L/CZ/07.png','/LR/LR.146L/CZ/08.png','/LR/LR.146L/CZ/09.png','/LR/LR.146L/CZ/10.png','/LR/LR.146L/CZ/11.png','/LR/LR.146L/CZ/12.png','/LR/LR.146L/CZ/13.png','/LR/LR.146L/CZ/14.png','/LR/LR.146L/CZ/15.png'], type.LWHATCH, 'STAINLESS STEEL METAL BAND WITH DOUBLE BUTTERFLY BUCKLE WITH PUSHERS<br>ALLOY CASE WITH SETTING WHITE CZ STONES <br>SWISS MOVEMENT<br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>CASE DIMENSION(3-9) 30.0MM<br>CASE DIMENSION (6-12) 33.0MM<br>DIAL OPENING SIZE 20.0MM<br>CASE MATERIAL ALLOY<br>HANDS SIZE 8.0*5.0MM<br>CROWN SIZE 4.5MM<br>BAND SIZE 14.0*14.0MM<br>A FULL ONE-YEAR WARRANTY'),
+new product('LR LORANCE 147L', 465, ['/LR/LR.147L/001.png','/LR/LR.147L/002.png','/LR/LR.147L/003.png','/LR/LR.147L/01.png','/LR/LR.147L/02.png','/LR/LR.147L/03.png','/LR/LR.147L/04.png','/LR/LR.147L/05.png','/LR/LR.147L/06.png','/LR/LR.147L/07.png','/LR/LR.147L/08.png','/LR/LR.147L/09.png','/LR/LR.147L/10.png','/LR/LR.147L/11.png','/LR/LR.147L/12.png','/LR/LR.147L/13.png','/LR/LR.147L/14.png','/LR/LR.147L/15.png','/LR/LR.147L/16.png','/LR/LR.147L/17.png','/LR/LR.147L/18.png','/LR/LR.147L/19.png','/LR/LR.147L/20.png','/LR/LR.147L/21.png','/LR/LR.147L/22.png','/LR/LR.147L/23.png','/LR/LR.147L/24.png','/LR/LR.147L/25.png','/LR/LR.147L/26.png','/LR/LR.147L/27.png','/LR/LR.147L/28.png','/LR/LR.147L/29.png','/LR/LR.147L/30.png','/LR/LR.147L/31.png','/LR/LR.147L/32.png','/LR/LR.147L/33.png'], type.LWHATCH, 'STAINLESS STEEL METAL BAND WITH DOUBLE BUTTERFLY BUCKLE WITH PUSHERS<br>ALLOY CASE <br>SWISS MOVEMENT<br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>A FULL ONE-YEAR WARRANTY <br>CASE DIMENSION 24.0MM*31.0MM<br>DIAL OPENING SIZE  24.0*17.0MM<br>HANDS SIZE  7.0*4.0MM<br>CROWN SIZE  4.5MM<br>BAND SIZE 14.0*14.0MM<br>MOVEMENT 763 RONDA'),
+new product('LR LORANCE 147L-ZIRCON', 585, ['/LR/LR.147L/CZ/001.png','/LR/LR.147L/CZ/002.png','/LR/LR.147L/CZ/003.png','/LR/LR.147L/CZ/01.png','/LR/LR.147L/CZ/02.png','/LR/LR.147L/CZ/03.png','/LR/LR.147L/CZ/04.png','/LR/LR.147L/CZ/05.png','/LR/LR.147L/CZ/06.png','/LR/LR.147L/CZ/07.png','/LR/LR.147L/CZ/08.png','/LR/LR.147L/CZ/09.png','/LR/LR.147L/CZ/10.png','/LR/LR.147L/CZ/11.png','/LR/LR.147L/CZ/12.png','/LR/LR.147L/CZ/13.png','/LR/LR.147L/CZ/14.png','/LR/LR.147L/CZ/15.png','/LR/LR.147L/CZ/16.png','/LR/LR.147L/CZ/17.png'], type.LWHATCH, 'STAINLESS STEEL METAL BAND WITH DOUBLE BUTTERFLY BUCKLE WITH PUSHERS<br>ALLOY CASE WITH SETTING WHITE CZ STONES<br>SWISS MOVEMENT<br>HARD GLASS<br>3 ATM WATER RESISTANCEA                                                               FULL ONE-YEAR WARRANTY <br>CASE DIMENSION 24.0MM*31.0MM<br>DIAL OPENING SIZE  24.0*17.0MM<br>HANDS SIZE  7.0*4.0MM<br>CROWN SIZE  4.5MM<br>BAND SIZE 14.0*14.0MM<br>MOVEMENT 763 RONDA'),
+new product('LR LORANCE 142L', 465, ['/LR/LR.142L/001.png','/LR/LR.142L/002.png','/LR/LR.142L/01.png','/LR/LR.142L/02.png','/LR/LR.142L/03.png','/LR/LR.142L/04.png','/LR/LR.142L/05.png','/LR/LR.142L/06.png','/LR/LR.142L/07.png','/LR/LR.142L/08.png','/LR/LR.142L/09.png','/LR/LR.142L/10.png','/LR/LR.142L/11.png','/LR/LR.142L/12.png','/LR/LR.142L/13.png','/LR/LR.142L/14.png','/LR/LR.142L/15.png','/LR/LR.142L/16.png','/LR/LR.142L/17.png','/LR/LR.142L/18.png'], type.LWHATCH, 'STAINLESS STEEL METAL BAND WITH DOUBLE BUTTERFLY BUCKLE WITH PUSHERS<br>ALLOY CASE <br>SWISS MOVEMENT<br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>CASE DIMENSION(3-9) 30.0MM<br>CASE DIMENSION(6-12) 34.0MM<br>DIAL OPENING SIZE 20.0*20.0MM<br>HANDS SIZE 7.5 4.5MM<br>CROWN SIZE 4.5MM<br>BAND SIZE 14.0*14.0MM<br>A FULL ONE-YEAR WARRANTY'),
+new product('LR LORANCE 140L', 465, ['/LR/LR.140L/001.png','/LR/LR.140L/002.png','/LR/LR.140L/01.png','/LR/LR.140L/02.png','/LR/LR.140L/03.png','/LR/LR.140L/04.png','/LR/LR.140L/05.png','/LR/LR.140L/06.png','/LR/LR.140L/07.png','/LR/LR.140L/08.png','/LR/LR.140L/09.png','/LR/LR.140L/10.png','/LR/LR.140L/11.png','/LR/LR.140L/12.png','/LR/LR.140L/13.png','/LR/LR.140L/14.png','/LR/LR.140L/15.png','/LR/LR.140L/16.png','/LR/LR.140L/17.png'], type.LWHATCH, 'STAINLESS STEEL METAL BAND WITH DOUBLE BUTTERFLY BUCKLE WITH PUSHERS<br>ALLOY CASE <br>SWISS MOVEMENT<br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>CASE DIMENSION(3-9) 30.0MM<br>CASE DIMENSION(6-12) 34.0MM<br>DIAL OPENING SIZE 20.0*20.0MM<br>HANDS SIZE 7.5 4.5MM<br>CROWN SIZE 4.5MM<br>BAND SIZE 14.0*14.0MM<br>A FULL ONE-YEAR WARRANTY'),
+new product('LR LORANCE 139L', 450, ['/LR/LR.139L/001.png','/LR/LR.139L/002.png','/LR/LR.139L/003.png','/LR/LR.139L/004.png','/LR/LR.139L/005.png','/LR/LR.139L/01.png','/LR/LR.139L/02.png','/LR/LR.139L/03.png','/LR/LR.139L/04.png','/LR/LR.139L/05.png','/LR/LR.139L/06.png','/LR/LR.139L/07.png','/LR/LR.139L/08.png','/LR/LR.139L/09.png','/LR/LR.139L/10.png','/LR/LR.139L/11.png','/LR/LR.139L/12.png','/LR/LR.139L/13.png','/LR/LR.139L/14.png','/LR/LR.139L/15.png','/LR/LR.139L/16.png','/LR/LR.139L/17.png','/LR/LR.139L/18.png','/LR/LR.139L/19.png','/LR/LR.139L/20.png','/LR/LR.139L/21.png','/LR/LR.139L/22.png','/LR/LR.139L/23.png','/LR/LR.139L/24.png','/LR/LR.139L/25.png','/LR/LR.139L/26.png','/LR/LR.139L/27.png','/LR/LR.139L/28.png','/LR/LR.139L/29.png','/LR/LR.139L/30.png','/LR/LR.139L/31.png','/LR/LR.139L/32.png','/LR/LR.139L/33.png','/LR/LR.139L/34.png','/LR/LR.139L/35.png','/LR/LR.139L/36.png','/LR/LR.139L/37.png','/LR/LR.139L/38.png','/LR/LR.139L/39.png','/LR/LR.139L/40.png','/LR/LR.139L/41.png','/LR/LR.139L/42.png','/LR/LR.139L/43.png','/LR/LR.139L/44.png','/LR/LR.139L/45.png','/LR/LR.139L/46.png'], type.LWHATCH, 'STAINLESS STEEL METAL BAND WITH DOUBLE BUTTERFLY BUCKLE WITH PUSHERS<br>ALLOY CASE <br>SWISS MOVEMENT<br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>CASE DIMENSION  30.0MM*  37.0MM<br> DIAL OPENING SIZE 24.5MM<br> CASE MATERIAL ALLOY<br> HANDS SIZE 9.0X12.0MM<br> CROWN SIZE  3.5MM<br>BAND SIZE16.0X14.0MM  <br> MOVEMENT 763<br>A FULL ONE-YEAR WARRANTY'),
+new product('LR LORANCE 258G-LEATHER', 495, ['/LR/LR.258G-LTH/001.png','/LR/LR.258G-LTH/002.png','/LR/LR.258G-LTH/01.png','/LR/LR.258G-LTH/02.png','/LR/LR.258G-LTH/03.png','/LR/LR.258G-LTH/04.png','/LR/LR.258G-LTH/05.png','/LR/LR.258G-LTH/06.png','/LR/LR.258G-LTH/07.png','/LR/LR.258G-LTH/08.png','/LR/LR.258G-LTH/09.png'], type.GWHATCH, 'STAINLESS STEEL BEZEL,CROWN AND CASEBACK <br> ALLOY CASE<br> SWISS MOVEMENT<br>LEATHER STRAP WITH STAINLESS STEEL D-SHAPE BUCKLE                                                <br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>CASE SIZE:42.0X49.0MM <br>OPENING SIZE:30.0X30.0MM<br> STRAP:22.0X20.0MM<br> CROWN SIZE:6.0MM <br>MOVT.:RONDA 785 <br>ONE-YEAR WARRANTY'),   
+new product('LR LORANCE 255G', 585, ['/LR/LR.255G/001.png','/LR/LR.255G/002.png','/LR/LR.255G/003.png','/LR/LR.255G/004.png','/LR/LR.255G/01.png','/LR/LR.255G/02.png','/LR/LR.255G/03.png','/LR/LR.255G/04.png','/LR/LR.255G/05.png','/LR/LR.255G/06.png','/LR/LR.255G/07.png'], type.GWHATCH, 'STAINLESS STEEL METAL BAND WITH DOUBLE BUTTERFLY BUCKLE WITH PUSHERS<br>ALLOY CASE <br>SWISS MOVEMENT<br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>A FULL YEARONE- WARRANTY<br>CASE SIZE:40.0X48.0MM<br> OPENING SIZE:29.5MM<br> BAND:20X20MM<br>CROWN SIZE:5.5MM <br>MOVT.: RONDA 785'),
+new product('LR LORANCE 250G', 585, ['/LR/LR.250G/001.png','/LR/LR.250G/002.png','/LR/LR.250G/004.png','/LR/LR.250G/01.png','/LR/LR.250G/02.png','/LR/LR.250G/03.png','/LR/LR.250G/04.png','/LR/LR.250G/05.png'], type.GWHATCH, 'STAINLESS STEEL METAL BAND WITH DOUBLE BUTTERFLY BUCKLE WITH PUSHERS<br>ALLOY CASE <br>SWISS MOVEMENT<br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>CASE SIZE:42.0X50.0MNN<br>OPENING SIZE:30.0X30.0MNN STRAP:21.0X18.0MM<br>CROWN SIZE:5.5MM<br>A FULL ONE-YEAR WARRANTY'),
+new product('LR LORANCE 250G-LEATHER', 585, ['/LR/LR.250G-LTH/003.png','/LR/LR.250G-LTH/06.png','/LR/LR.250G-LTH/07.png','/LR/LR.250G-LTH/08.png','/LR/LR.250G-LTH/09.png'], type.GWHATCH, 'STAINLESS STEEL BEZEL,CROWN AND CASEBACK <br> ALLOY CASE<br> SWISS MOVEMENT<br>LEATHER STRAP WITH STAINLESS STEEL D-SHAPE BUCKLE                                                <br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>CASE SIZE:42.0X50.0MNN<br>OPENING SIZE:30.0X30.0MNN STRAP:21.0X18.0MM<br>CROWN SIZE:5.5MM<br>ONE-YEAR WARRANTY'),
+new product('LR LORANCE 148G', 585, ['/LR/LR.148G/001.png','/LR/LR.148G/01.png','/LR/LR.148G/02.png','/LR/LR.148G/03.png','/LR/LR.148G/04.png','/LR/LR.148G/05.png','/LR/LR.148G/06.png','/LR/LR.148G/07.png','/LR/LR.148G/08.png','/LR/LR.148G/09.png'], type.GWHATCH, 'STAINLESS STEEL METAL BAND WITH DOUBLE BUTTERFLY BUCKLE WITH PUSHERS<br>ALLOY CASE <br>SWISS MOVEMENT<br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>Case Dimension(3-9) 40.0mm<br>Case Dimension(6-12) 47.0mm<br>Dial Opening Size  30.0mm<br>Crown Size 5.5mm<br>Band Size 19.0*17.0mm<br>A FULL ONE-YEAR WARRANTY'),
+new product('LR LORANCE 141G-LEATHER', 585, ['/LR/LR.141G-LTH/001.png','/LR/LR.141G-LTH/002.png','/LR/LR.141G-LTH/003.png','/LR/LR.141G-LTH/004.png','/LR/LR.141G-LTH/01.png','/LR/LR.141G-LTH/02.png','/LR/LR.141G-LTH/03.png','/LR/LR.141G-LTH/04.png','/LR/LR.141G-LTH/05.png','/LR/LR.141G-LTH/06.png','/LR/LR.141G-LTH/07.png'], type.GWHATCH, 'STAINLESS STEEL BEZEL,CROWN AND CASEBACK <br> ALLOY CASE<br> SWISS MOVEMENT<br>LEATHER STRAP WITH STAINLESS STEEL D-SHAPE BUCKLE                                                <br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>CASE DIMENSION : (3-9) 40.0MM<br> CASE DIMENSION : (6-12) 44.0MM<br> DIAL OPENING SIZE : 28.5MM<br>HANDS SIZE : 11.0*8.0MM<br> CROWN SIZE : 5.5MM<br> BAND SIZE  :20.0*20.0MM<br>MOVEMENT  RONDA 785 <br>A FULL ONE-YEAR WARRANTY'),
+new product('LR LORANCE 141G', 585, ['/LR/LR.141G/001.png','/LR/LR.141G/002.png','/LR/LR.141G/003.png','/LR/LR.141G/004.png','/LR/LR.141G/005.png','/LR/LR.141G/01.png','/LR/LR.141G/02.png','/LR/LR.141G/03.png','/LR/LR.141G/04.png','/LR/LR.141G/05.png','/LR/LR.141G/06.png','/LR/LR.141G/07.png','/LR/LR.141G/08.png'], type.GWHATCH, 'STAINLESS STEEL METAL BAND WITH DOUBLE BUTTERFLY BUCKLE WITH PUSHERS<br>ALLOY CASE WITH SETTING WHITE CZ STONES<br>SWISS MOVEMENT<br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>CASE DIMENSION : (3-9) 40.0MM<br> CASE DIMENSION : (6-12) 44.0MM<br> DIAL OPENING SIZE : 28.5MM<br>HANDS SIZE : 11.0*8.0MM<br> CROWN SIZE : 5.5MM<br> BAND SIZE  :20.0*20.0MM<br>MOVEMENT  RONDA 785 <br>A FULL ONE-YEAR WARRANTY'),
+new product('LR LORANCE 251G-LEATHER', 525, ['/LR/LR.251G-LTH/001.png','/LR/LR.251G-LTH/002.png','/LR/LR.251G-LTH/003.png','/LR/LR.251G-LTH/004.png','/LR/LR.251G-LTH/01.png','/LR/LR.251G-LTH/02.png','/LR/LR.251G-LTH/03.png','/LR/LR.251G-LTH/04.png','/LR/LR.251G-LTH/05.png','/LR/LR.251G-LTH/06.png'], type.GWHATCH, 'SWISS MOVEMENT<br>ALLOY CASE<br>LEATHER STRAP WITH STAINLESS STEEL LOCK                                 <br>HARD GLASS<br>3 ATM WATER RESISTANCE<br>CASE SIZE: 40X30MM<br> OPENING SIZE:22.0X26.5MM <br>STRAP:23X18MM<br> CROWN SIZE:6MM <br>MOVT.:RONDA 762 <br>A FULL ONE-YEAR WARRANTY')
+]
+localStorage.products = JSON.stringify(products)
+products = JSON.parse(localStorage.products)
+let productsDisplays = document.getElementsByClassName('productDisplay')
+let usedItems = []
+
+let img = document.querySelector(".top img.topimg")
+console.log("imgs/" + products.filter(i => (i.type == type.GWHATCH || i.type == type.LWHATCH) && i.images[0].substring(i.images[0].lastIndexOf("/")).length == 8)[Math.ceil(Math.random() * products.filter(i => (i.type == type.GWHATCH || i.type == type.LWHATCH) && i.images[0].substring(i.images[0].lastIndexOf("/")).length == 8).length)].images[0])
+img.src = "imgs/" + products.filter(i => (i.type == type.GWHATCH || i.type == type.LWHATCH) && i.images[0].substring(i.images[0].lastIndexOf("/")).length == 8)[Math.ceil(Math.random() * products.filter(i => (i.type == type.GWHATCH || i.type == type.LWHATCH) && i.images[0].substring(i.images[0].lastIndexOf("/")).length == 8).length)].images[0]
+
+for (let i = 0; i < productsDisplays.length; i++) {
+    let element = productsDisplays.item(i);
+    let subProducts = products.filter(
+        item => (element.classList[1] == 'Lady' ? type.LWHATCH:(element.classList[1] == 'Man'? type.GWHATCH:(element.classList[1] == 'Wallet' ? type.WALLET: type.PEN))) == item.type && !usedItems.includes(item)
+    )
+    let item = subProducts[Math.floor(Math.random() * (subProducts.length - 1))]
+    console.log(subProducts);
+    
+    element.outerHTML = getDisplay(item)
+    usedItems.unshift(item)
+    element.onclick = _=>{
+        window.location.pathname = "product.html"
+    }
+    i--
+    
+}
+
+
